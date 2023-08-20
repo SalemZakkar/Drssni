@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "496571373709",
+    "project_id": "drssni",
+    "storage_bucket": "drssni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496571373709:android:e00c85c143c9900e012ac4",
+        "android_client_info": {
+          "package_name": "com.darssni.darssni2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "496571373709-ihukomqhgu1shphgskgnn0c1prb0f9iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkcpuSy6dKTiWGx_2VShzZn6kqI4tJevQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "496571373709-ihukomqhgu1shphgskgnn0c1prb0f9iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
