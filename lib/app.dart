@@ -12,7 +12,8 @@ class _DrssniAppState extends State<DrssniApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.blue, primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: const Color(0xff1114D4), primarySwatch: Colors.blue),
       title: 'Drssni App',
       home: const MainPage(),
     );
