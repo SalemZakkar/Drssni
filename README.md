@@ -1,6 +1,6 @@
-# darssni2
+# Drrsni
 
-A new Flutter project.
+An app for drrsni platform [Syria - homs]
 
 ## Getting Started
 
