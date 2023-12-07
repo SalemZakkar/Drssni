@@ -1,5 +1,6 @@
+import 'package:darssni2/navigate_util.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -9,19 +10,18 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  late WebViewController webViewController;
+  late InAppWebViewController controller;
+  late PullToRefreshController pullToRefreshController;
   @override
   void initState() {
-    webViewController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('https://www.drssni.com/profile'))
-      ..setNavigationDelegate(NavigationDelegate(onProgress: (val) {
-        setState(() {
-          progress = val / 100;
-        });
-      }))
-      ..setBackgroundColor(Colors.white)
-      ..enableZoom(false);
+    pullToRefreshController = PullToRefreshController(
+      options: PullToRefreshOptions(
+        color: Colors.blue,
+      ),
+      onRefresh: () async {
+        controller.reload();
+      },
+    );
     super.initState();
   }
 
@@ -35,8 +35,8 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (await webViewController.canGoBack()) {
-          await webViewController.goBack();
+        if (await controller.canGoBack()) {
+          await controller.goBack();
           return false;
         } else {
           return true;
@@ -56,9 +56,38 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         body: Container(
+            color: Colors.white,
             constraints: const BoxConstraints.expand(),
-            child: WebViewWidget(controller: webViewController)),
+            child: InAppWebView(
+              pullToRefreshController: pullToRefreshController,
+              initialOptions: InAppWebViewGroupOptions(
+                  crossPlatform: InAppWebViewOptions(
+                useShouldOverrideUrlLoading: true,
+                allowFileAccessFromFileURLs: true,
+                cacheEnabled: true,
+                javaScriptEnabled: true,
+                supportZoom: false,
+              )),
+              onProgressChanged: (controller, progress) {
+                this.progress = progress / 100;
+                setState(() {});
+              },
+              onWebViewCreated: (_) {
+                controller = _;
+              },
+              shouldOverrideUrlLoading: (controller, navigationAction) async {
+                return NavigateUtil.getDecision(
+                    navigationAction.request.url?.toString());
+              },
+              initialUrlRequest: URLRequest(
+                  url: Uri.parse('https://www.drssni.com/test-salem')),
+            )),
       ),
     );
   }
 }
+
+//whatsapp
+//mailto
+//tg
+//

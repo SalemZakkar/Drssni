@@ -1,6 +1,6 @@
 # Drrsni
 
-An app for drrsni platform [Syria - homs]
+An app for drssni platform [Syria - homs]
 
 ## Getting Started
 
