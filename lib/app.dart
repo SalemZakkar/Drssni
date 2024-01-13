@@ -15,6 +15,7 @@ class _DrssniAppState extends State<DrssniApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: const Color(0xff1114D4), primarySwatch: Colors.blue),
       title: 'Drssni App',
+
       home: const MainPage(),
     );
   }
